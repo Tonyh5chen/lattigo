@@ -104,9 +104,9 @@ func benchRelinKeyGen(b *testing.B) {
 
 		crpGenerator := ring.NewUniformSampler(prng, testCtx.contextQP)
 
-		crp := make([]*ring.Poly, parameters.Beta)
+		crp := make([]*ring.Poly, parameters.Beta())
 
-		for i := uint64(0); i < parameters.Beta; i++ {
+		for i := uint64(0); i < parameters.Beta(); i++ {
 			crp[i] = crpGenerator.ReadNew()
 		}
 
@@ -340,9 +340,9 @@ func benchRotKeyGen(b *testing.B) {
 		}
 
 		crpGenerator := ring.NewUniformSampler(prng, testCtx.contextQP)
-		crp := make([]*ring.Poly, parameters.Beta)
+		crp := make([]*ring.Poly, parameters.Beta())
 
-		for i := uint64(0); i < parameters.Beta; i++ {
+		for i := uint64(0); i < parameters.Beta(); i++ {
 			crp[i] = crpGenerator.ReadNew()
 		}
 
