@@ -2,6 +2,7 @@ package dbfv
 
 import (
 	"errors"
+
 	"github.com/ldsec/lattigo/bfv"
 	"github.com/ldsec/lattigo/ring"
 	"github.com/ldsec/lattigo/utils"
@@ -189,10 +190,6 @@ func (ekg *RKGProtocol) AllocateShares() (r1 RKGShareRoundOne, r2 RKGShareRoundT
 // among j parties in the given context with the given bit-decomposition.
 func NewEkgProtocol(params *bfv.Parameters) *RKGProtocol {
 
-	if !params.IsValid() {
-		panic("cannot NewEkgProtocol : params not valid (check if they where generated properly)")
-	}
-
 	context := newDbfvContext(params)
 
 	ekg := new(RKGProtocol)
@@ -258,7 +255,7 @@ func (ekg *RKGProtocol) GenShareRoundOne(u, sk *ring.Poly, crp []*ring.Poly, sha
 			}
 
 			// Handles the case where nb pj does not divides nb qi
-			if index == uint64(len(ekg.context.params.LogQi)-1) {
+			if index == uint64(len(ekg.context.params.Qi)-1) {
 				break
 			}
 		}
